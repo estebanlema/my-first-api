@@ -1,0 +1,8 @@
+#! 0-my-first-api-namespace.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: my-first-api
+    labels:
+        com.docker.compose.project: my-first-api
