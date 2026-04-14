@@ -8,3 +8,6 @@ resources:
     - api-expose.yaml
     - api-service.yaml
     - default-network-policy.yaml
+    - postgres-deployment.yaml
+    - postgres-service.yaml
+    - postgres-pvc.yaml

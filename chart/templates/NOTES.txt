@@ -1,0 +1,30 @@
+Thank you for installing {{ .Chart.Name }} {{ .Chart.Version }}!
+
+=============================================================
+  IMPORTANT: Change the default database password!
+=============================================================
+  The default password "changeme" must be replaced before
+  deploying to any non-local environment:
+
+    helm upgrade {{ .Release.Name }} ./chart \
+      --set postgresql.auth.password=<your-secure-password>
+
+=============================================================
+  Accessing the API
+=============================================================
+{{- if .Values.ingress.enabled }}
+  URL: http{{ if .Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.host }}
+{{- else }}
+  The API is not exposed via Ingress. To access it locally:
+
+    kubectl port-forward svc/{{ include "my-first-api.fullname" . }} 8080:{{ .Values.service.port }} -n {{ .Release.Namespace }}
+
+  Then visit: http://localhost:8080
+
+  To enable Ingress, set:
+    --set ingress.enabled=true
+    --set ingress.host=<your-hostname>
+{{- end }}
+
+  Health check endpoint: /health
+  API docs:              /docs

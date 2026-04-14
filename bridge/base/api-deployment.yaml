@@ -30,6 +30,9 @@ spec:
                   ports:
                     - name: api-8000
                       containerPort: 8000
+                  env:
+                    - name: DATABASE_URL
+                      value: postgresql://postgres:postgres@db:5432/mydb
                   volumeMounts:
                     - name: app
                       mountPath: /app
