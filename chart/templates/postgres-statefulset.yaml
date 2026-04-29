@@ -4,17 +4,17 @@ metadata:
   name: {{ include "my-first-api.fullname" . }}-postgresql
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "my-first-api.labels" . | nindent 4 }}
+    {{ include "my-first-api.labels" . | nindent 4 }}
 spec:
   serviceName: {{ include "my-first-api.fullname" . }}-postgresql
   replicas: 1
   selector:
     matchLabels:
-      {{- include "my-first-api.postgresql.selectorLabels" . | nindent 6 }}
+      {{ include "my-first-api.postgresql.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "my-first-api.postgresql.selectorLabels" . | nindent 8 }}
+        {{ include "my-first-api.postgresql.selectorLabels" . | nindent 8 }}
     spec:
       securityContext:
         fsGroup: 999
@@ -67,7 +67,7 @@ spec:
             periodSeconds: 5
             failureThreshold: 6
           resources:
-            {{- toYaml .Values.resources.postgresql | nindent 12 }}
+            {{ toYaml .Values.resources.postgresql | nindent 12 }}
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data

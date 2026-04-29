@@ -4,12 +4,12 @@ metadata:
   name: {{ include "my-first-api.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "my-first-api.labels" . | nindent 4 }}
+    {{ include "my-first-api.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "my-first-api.selectorLabels" . | nindent 6 }}
+      {{ include "my-first-api.selectorLabels" . | nindent 6 }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "my-first-api.selectorLabels" . | nindent 8 }}
+        {{ include "my-first-api.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ include "my-first-api.serviceAccountName" . }}
       securityContext:
@@ -58,7 +58,7 @@ spec:
             periodSeconds: 10
             failureThreshold: 3
           resources:
-            {{- toYaml .Values.resources.api | nindent 12 }}
+            {{ toYaml .Values.resources.api | nindent 12 }}
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:

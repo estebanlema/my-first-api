@@ -5,10 +5,10 @@ metadata:
   name: {{ include "my-first-api.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "my-first-api.labels" . | nindent 4 }}
+    {{ include "my-first-api.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{ toYaml . | nindent 4 }}
   {{- end }}
 spec:
   {{- if .Values.ingress.className }}
@@ -16,7 +16,7 @@ spec:
   {{- end }}
   {{- if .Values.ingress.tls }}
   tls:
-    {{- toYaml .Values.ingress.tls | nindent 4 }}
+    {{ toYaml .Values.ingress.tls | nindent 4 }}
   {{- end }}
   rules:
     - host: {{ .Values.ingress.host }}

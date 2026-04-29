@@ -1,0 +1,7 @@
+image:
+  repository: estebanlema/my-first-api
+  tag: "1.0.0"
+
+postgresql:
+  auth:
+    password: "MySecurePassword123"
