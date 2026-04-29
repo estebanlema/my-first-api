@@ -1,13 +1,22 @@
 from pydantic import BaseModel
+from datetime import datetime
+from typing import Optional
 
-class ItemCreate(BaseModel):
-    name: str
-    description: str
+class ReminderCreate(BaseModel):
+    title: str
+    due_date: Optional[datetime] = None
+    completed: bool = False
+    notes: Optional[str] = None
+    priority: str = "medium"
 
-class ItemResponse(BaseModel):
+class ReminderResponse(BaseModel):
     id: int
-    name: str
-    description: str
+    title: str
+    due_date: Optional[datetime]
+    completed: bool
+    notes: Optional[str]
+    priority: str
+    created_at: datetime
 
     class Config:
         orm_mode = True

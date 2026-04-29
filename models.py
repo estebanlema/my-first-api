@@ -1,9 +1,14 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy.sql import func
 from database import Base
 
-class Item(Base):
-    __tablename__ = "items"
+class Reminder(Base):
+    __tablename__ = "reminders"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
-    description = Column(String)
+    title = Column(String, nullable=False)
+    due_date = Column(DateTime, nullable=True)
+    completed = Column(Boolean, default=False)
+    notes = Column(String, nullable=True)
+    priority = Column(String, default="medium")
+    created_at = Column(DateTime, server_default=func.now())
